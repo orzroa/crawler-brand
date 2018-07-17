@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hizhu.crawler.brand.mapper.BrandInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hizhu.crawler.brand.entity.po.BrandInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="platform_type" jdbcType="INTEGER" property="platformType" />
+    <result column="platform_name" jdbcType="VARCHAR" property="platformName" />
+    <result column="brand_name_from_out" jdbcType="VARCHAR" property="brandNameFromOut" />
+    <result column="brand_url" jdbcType="VARCHAR" property="brandUrl" />
+    <result column="steward_id" jdbcType="INTEGER" property="stewardId" />
+    <result column="brand_type" jdbcType="INTEGER" property="brandType" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="is_join" jdbcType="TINYINT" property="isJoin" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, platform_type, platform_name, brand_name_from_out, brand_url, steward_id, brand_type,
+    city_code, is_join, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from brand_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from brand_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hizhu.crawler.brand.entity.po.BrandInfo">
+    insert into brand_info (id, platform_type, platform_name,
+      brand_name_from_out, brand_url, steward_id,
+      brand_type, city_code, is_join,
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{platformType,jdbcType=INTEGER}, #{platformName,jdbcType=VARCHAR},
+      #{brandNameFromOut,jdbcType=VARCHAR}, #{brandUrl,jdbcType=VARCHAR}, #{stewardId,jdbcType=INTEGER},
+      #{brandType,jdbcType=INTEGER}, #{cityCode,jdbcType=VARCHAR}, #{isJoin,jdbcType=TINYINT},
+      #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hizhu.crawler.brand.entity.po.BrandInfo">
+    insert into brand_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="platformType != null">
+        platform_type,
+      </if>
+      <if test="platformName != null">
+        platform_name,
+      </if>
+      <if test="brandNameFromOut != null">
+        brand_name_from_out,
+      </if>
+      <if test="brandUrl != null">
+        brand_url,
+      </if>
+      <if test="stewardId != null">
+        steward_id,
+      </if>
+      <if test="brandType != null">
+        brand_type,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="isJoin != null">
+        is_join,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="platformType != null">
+        #{platformType,jdbcType=INTEGER},
+      </if>
+      <if test="platformName != null">
+        #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandNameFromOut != null">
+        #{brandNameFromOut,jdbcType=VARCHAR},
+      </if>
+      <if test="brandUrl != null">
+        #{brandUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="stewardId != null">
+        #{stewardId,jdbcType=INTEGER},
+      </if>
+      <if test="brandType != null">
+        #{brandType,jdbcType=INTEGER},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isJoin != null">
+        #{isJoin,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hizhu.crawler.brand.entity.po.BrandInfo">
+    update brand_info
+    <set>
+      <if test="platformType != null">
+        platform_type = #{platformType,jdbcType=INTEGER},
+      </if>
+      <if test="platformName != null">
+        platform_name = #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandNameFromOut != null">
+        brand_name_from_out = #{brandNameFromOut,jdbcType=VARCHAR},
+      </if>
+      <if test="brandUrl != null">
+        brand_url = #{brandUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="stewardId != null">
+        steward_id = #{stewardId,jdbcType=INTEGER},
+      </if>
+      <if test="brandType != null">
+        brand_type = #{brandType,jdbcType=INTEGER},
+      </if>
+      <if test="cityCode != null">
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isJoin != null">
+        is_join = #{isJoin,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hizhu.crawler.brand.entity.po.BrandInfo">
+    update brand_info
+    set platform_type = #{platformType,jdbcType=INTEGER},
+      platform_name = #{platformName,jdbcType=VARCHAR},
+      brand_name_from_out = #{brandNameFromOut,jdbcType=VARCHAR},
+      brand_url = #{brandUrl,jdbcType=VARCHAR},
+      steward_id = #{stewardId,jdbcType=INTEGER},
+      brand_type = #{brandType,jdbcType=INTEGER},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      is_join = #{isJoin,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+  <!--
+      ===========下面Mapper方法对应的 sql 为手动添加 ===========
+  -->
+
+  <!--  Select 基本判断语句 -->
+  <sql id="Base_Judge_Null">
+    <if test="id != null">
+      AND id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="platformType != null">
+      AND platform_type = #{platformType,jdbcType=INTEGER}
+    </if>
+    <if test="platformName != null">
+      AND platform_name = #{platformName,jdbcType=VARCHAR}
+    </if>
+    <if test="brandNameFromOut != null">
+      AND brand_name_from_out = #{brandNameFromOut,jdbcType=VARCHAR}
+    </if>
+    <if test="brandUrl != null">
+      AND brand_url = #{brandUrl,jdbcType=VARCHAR}
+    </if>
+    <if test="stewardId != null">
+      AND steward_id = #{stewardId,jdbcType=INTEGER}
+    </if>
+    <if test="brandType != null">
+      AND brand_type = #{brandType,jdbcType=INTEGER}
+    </if>
+    <if test="cityCode != null">
+      AND city_code = #{cityCode,jdbcType=VARCHAR}
+    </if>
+    <if test="isJoin != null">
+      AND is_join = #{isJoin,jdbcType=TINYINT}
+    </if>
+    <if test="createTime != null">
+      AND create_time = #{createTime,jdbcType=BIGINT}
+    </if>
+    <if test="updateTime != null">
+      AND update_time = #{updateTime,jdbcType=BIGINT}
+    </if>
+  </sql>
+
+  <select id="selectByObject" resultType="com.hizhu.crawler.brand.entity.po.BrandInfo">
+    select
+    <include refid="Base_Column_List" />
+    from brand_info
+    WHERE  1=1
+    <include refid="Base_Judge_Null"/>
+  </select>
+
+
+</mapper>

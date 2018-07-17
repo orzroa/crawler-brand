@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hizhu.crawler.brand.mapper.StewardInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hizhu.crawler.brand.entity.po.StewardInfo">
+    <id column="steward_id" jdbcType="INTEGER" property="stewardId" />
+    <result column="steward_name" jdbcType="VARCHAR" property="stewardName" />
+    <result column="cell_phone" jdbcType="VARCHAR" property="cellPhone" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="is_mine" jdbcType="TINYINT" property="isMine" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    steward_id, steward_name,cell_phone, telephone, is_mine, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from steward_info
+    where steward_id = #{stewardId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from steward_info
+    where steward_id = #{stewardId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hizhu.crawler.brand.entity.po.StewardInfo" useGeneratedKeys="true" keyProperty="stewardId">
+    insert into steward_info (steward_id, steward_name, cell_phone,telephone,
+      is_mine, create_time, update_time
+      )
+    values (#{stewardId,jdbcType=INTEGER}, #{stewardName,jdbcType=VARCHAR},  #{cellPhone,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR},
+      #{isMine,jdbcType=TINYINT}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.hizhu.crawler.brand.entity.po.StewardInfo">
+    insert into steward_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stewardId != null">
+        steward_id,
+      </if>
+      <if test="stewardName != null">
+        steward_name,
+      </if>
+      <if test="cellPhone != null">
+        cell_phone,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="isMine != null">
+        is_mine,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stewardId != null">
+        #{stewardId,jdbcType=INTEGER},
+      </if>
+      <if test="stewardName != null">
+        #{stewardName,jdbcType=VARCHAR},
+      </if>
+      <if test="cellPhone != null">
+        #{cellPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="isMine != null">
+        #{isMine,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hizhu.crawler.brand.entity.po.StewardInfo">
+    update steward_info
+    <set>
+      <if test="stewardName != null">
+        steward_name = #{stewardName,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="cellPhone != null">
+        cell_phone = #{cellPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="isMine != null">
+        is_mine = #{isMine,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where steward_id = #{stewardId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hizhu.crawler.brand.entity.po.StewardInfo">
+    update steward_info
+    set steward_name = #{stewardName,jdbcType=VARCHAR},
+      cell_phone = #{cellPhone,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      is_mine = #{isMine,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT}
+    where steward_id = #{stewardId,jdbcType=INTEGER}
+  </update>
+
+
+  <!--
+      ===========下面Mapper方法对应的 sql 为手动添加 ===========
+  -->
+  <!--  基本判断语句 -->
+  <sql id="Base_Judge_Null">
+    <if test="stewardId != null">
+      AND steward_id = #{stewardId,jdbcType=INTEGER}
+    </if>
+    <if test="stewardName != null">
+      AND steward_name = #{stewardName,jdbcType=VARCHAR}
+    </if>
+    <if test="cellPhone != null">
+      AND cell_phone = #{cellPhone,jdbcType=VARCHAR}
+    </if>
+    <if test="telephone != null">
+      AND telephone = #{telephone,jdbcType=VARCHAR}
+    </if>
+    <if test="isMine != null">
+      AND is_mine = #{isMine,jdbcType=TINYINT}
+    </if>
+    <if test="createTime != null">
+      AND create_time = #{createTime,jdbcType=BIGINT}
+    </if>
+    <if test="updateTime != null">
+      AND update_time = #{updateTime,jdbcType=BIGINT}
+    </if>
+  </sql>
+
+<!--根据Object 查询 集合-->
+  <select id="selectByObject" resultType="com.hizhu.crawler.brand.entity.po.StewardInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from steward_info
+    WHERE  1=1
+    <include refid="Base_Judge_Null"/>
+  </select>
+
+
+</mapper>
