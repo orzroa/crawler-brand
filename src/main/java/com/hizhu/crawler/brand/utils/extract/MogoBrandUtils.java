@@ -99,6 +99,7 @@ public class MogoBrandUtils {
                     total = Integer.parseInt(totalNumStr);
                 } catch (NumberFormatException e) {
                     log.info("mmp  >>>>>>> info4Json <<<<<<<");
+                    urlsAllArea.add(urlSingle);
                 }
             }
 
