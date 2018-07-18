@@ -78,11 +78,6 @@
 			<version>${druid_version}</version>
 		</dependency>
 
-
-
-
-
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -146,7 +141,6 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.6</version>
 		</dependency>
-
 
 	</dependencies>
 

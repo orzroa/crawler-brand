@@ -77,7 +77,7 @@ public class MogoBrandUtils {
 
         CopyOnWriteArraySet<String> urlsAll4Page = new CopyOnWriteArraySet<>();
         if (urlsAllArea == null){
-            log.info("方法：MogoBrandUtils.getAllUrl4PageList ==>> urlsAllArea 为 null");
+            log.info("方法：MogoBrandUtils.getAllUrl4DetailList ==>> urlsAllArea 为 null");
          return null;
         }
         urlsAllArea.forEach(urlSingle ->{
@@ -230,7 +230,6 @@ public class MogoBrandUtils {
                 saveBrandInfo.setCityName(cityEnum.getCityName());
                 saveBrandInfo.setCityCode(cityEnum.getCityCode());
 
-//            System.out.println("brandName >>" + brandName +",landlordName >>" + landlordName + ",phoneNum >>" + phoneNum);
             } catch (Exception e) {
                 urlsAll4Detail.add(detailUrl);
             }
@@ -239,9 +238,6 @@ public class MogoBrandUtils {
 
         log.info("====>>>>>> 线程名称  >>" + threadName +" 解析完成>>>>");
     }
-
-
-
 
 }
 

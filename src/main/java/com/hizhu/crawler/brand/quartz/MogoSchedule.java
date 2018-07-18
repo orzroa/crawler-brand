@@ -22,23 +22,23 @@ public class MogoSchedule {
     @Autowired
     private BrandInfoService brandInfoService;
 
-    @Scheduled(cron = "0 0 0 ? * *")
+    @Scheduled(cron = "0 10 0 ? * *")
     public void scheduler4SH(){
         this.schedulerSH(City4Mogu.SHANGHAI.getCityShortName());
     }
-    @Scheduled(cron = "0 0 23 ? * *")
+    @Scheduled(cron = "0 40 23 ? * *")
     public void scheduler4SZ(){
         this.schedulerSZ(City4Mogu.SHENZHENG.getCityShortName());
     }
-    @Scheduled(cron = "0 0 23 ? * *")
+    @Scheduled(cron = "0 40 23 ? * *")
     public void scheduler4SU(){
         this.schedulerSU(City4Mogu.SUZHOU.getCityShortName());
     }
-    @Scheduled(cron = "0 0 0 ? * *")
+    @Scheduled(cron = "0 40 23 ? * *")
     public void scheduler4GZ(){
         this.schedulerGZ(City4Mogu.GUANGZHOU.getCityShortName());
     }
-    @Scheduled(cron = "0 0 23 ? * *")
+    @Scheduled(cron = "0 0 0 ? * *")
     public void scheduler4ZZ(){
         this.schedulerZZ(City4Mogu.ZHENGZHOU.getCityShortName());
     }
@@ -46,19 +46,19 @@ public class MogoSchedule {
     public void scheduler4HZ(){
         this.schedulerHZ(City4Mogu.HANGZHOU.getCityShortName());
     }
-    @Scheduled(cron = "0 0 2 ? * *")
+    @Scheduled(cron = "0 0 0 ? * *")
     public void scheduler4BJ(){
         this.schedulerBJ(City4Mogu.BEIJING.getCityShortName());
     }
-    @Scheduled(cron = "0 30 1 ? * *")
+    @Scheduled(cron = "0 20 0 ? * *")
     public void scheduler4NJ(){
         this.schedulerNJ(City4Mogu.NANJING.getCityShortName());
     }
-    @Scheduled(cron = "0 30 1 ? * *")
+    @Scheduled(cron = "0 30 0 ? * *")
     public void scheduler4TJ(){
         this.schedulerTJ(City4Mogu.TIANJIN.getCityShortName());
     }
-    @Scheduled(cron = "0 0 2 ? * *")
+    @Scheduled(cron = "0 30 0 ? * *")
     public void scheduler4WH(){
         this.schedulerWH(City4Mogu.WUHAN.getCityShortName());
     }
