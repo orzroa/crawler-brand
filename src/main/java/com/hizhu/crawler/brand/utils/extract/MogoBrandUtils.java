@@ -43,12 +43,12 @@ public class MogoBrandUtils {
      * @param startUrl
      * @return
      */
-    public static CopyOnWriteArraySet<String> getAllUrl4AreaList(String startUrl) {
+    public static CopyOnWriteArraySet<String> getAllUrl4Area(String startUrl) {
         if (StringUtils.isEmpty(startUrl)){
-            log.info("方法：MogoBrandUtils.getAllUrl4AreaList ==>> startUrl 为 null");
+            log.info("方法：MogoBrandUtils.getAllUrl4Area ==>> startUrl 为 null");
             return null;
         }
-        CopyOnWriteArraySet<String> urlsAll4Area = new CopyOnWriteArraySet<>();
+        CopyOnWriteArraySet<String> allUrls4Area = new CopyOnWriteArraySet<>();
         FetchedPageInfo fetchedPageInfo = HttpConnectionManager.sendGetAndRetry(startUrl, false, true, "", 1000);
         // 获得html内容
         Document doc = Jsoup.parse(fetchedPageInfo.getContent());
@@ -59,34 +59,34 @@ public class MogoBrandUtils {
         //拼装列表页 URLList  >>>====<<<  Begin
         districtElements.forEach(districtElement ->{
             String listUrl4Area = startUrl + districtElement.attr("code");
-            urlsAll4Area.add(listUrl4Area);
+            allUrls4Area.add(listUrl4Area);
         });
         areaElements.forEach(areaElement -> {
             String listUrl4Area = startUrl + areaElement.attr("code");
-            urlsAll4Area.add(listUrl4Area);
+            allUrls4Area.add(listUrl4Area);
         });
-        return urlsAll4Area;
+        return allUrls4Area;
     }
 
     /**
      * 根据所有地区AreaUrl { su.mgzf.com/list/xz1518_gusuqu } 获取 AreaPageUrl { su.mgzf.com/list/xz1518_gusuqu?page=1 }
-     * @param urlsAllArea
+     * @param allUrls4Area
      * @return
      */
-    public static CopyOnWriteArraySet<String> getAllUrl4PageList(CopyOnWriteArraySet<String> urlsAllArea) {
+    public static CopyOnWriteArraySet<String> getAllUrl4Page(CopyOnWriteArraySet<String> allUrls4Area) {
 
-        CopyOnWriteArraySet<String> urlsAll4Page = new CopyOnWriteArraySet<>();
-        if (urlsAllArea == null){
-            log.info("方法：MogoBrandUtils.getAllUrl4DetailList ==>> urlsAllArea 为 null");
+        CopyOnWriteArraySet<String> allUrls4Page = new CopyOnWriteArraySet<>();
+        if (allUrls4Area == null){
+            log.info("方法：MogoBrandUtils.getAllUrl4Page ==>> allUrls4Area 为 null");
          return null;
         }
-        urlsAllArea.forEach(urlSingle ->{
+        allUrls4Area.forEach(singleUrl4Area ->{
             /**
              * 提取列表页面Page 信息  >>>====<<<  Begin
              */
-            FetchedPageInfo urlStrInfo = HttpConnectionManager.sendPostAndRetry(urlSingle, null,null,true,500);
+            FetchedPageInfo urlStrInfo = HttpConnectionManager.sendPostAndRetry(singleUrl4Area, null,null,true,500);
             if (urlStrInfo != null){
-                urlsAllArea.remove(urlSingle);
+                allUrls4Area.remove(singleUrl4Area);
             }
             Document urlStrDoc = Jsoup.parse(urlStrInfo.getContent());
             String body = urlStrDoc.select("body").text();
@@ -99,18 +99,18 @@ public class MogoBrandUtils {
                     total = Integer.parseInt(totalNumStr);
                 } catch (NumberFormatException e) {
                     log.info("mmp  >>>>>>> info4Json <<<<<<<");
-                    urlsAllArea.add(urlSingle);
+                    allUrls4Area.add(singleUrl4Area);
                 }
             }
 
             if (total > 0){
                 for (int currentPage = 1; currentPage <= totalPage; currentPage++){
-                    String urlsSingle4Page = urlSingle + "?page=" + currentPage;
-                    urlsAll4Page.add(urlsSingle4Page);
+                    String singleUrl4Page = singleUrl4Area + "?page=" + currentPage;
+                    allUrls4Page.add(singleUrl4Page);
                 }
             }
         });
-        return urlsAll4Page;
+        return allUrls4Page;
     }
 
     /**
@@ -118,13 +118,13 @@ public class MogoBrandUtils {
      * @param urlsAll4Page
      * @return
      */
-    public static CopyOnWriteArraySet<String> getAllDetailUrlList(CopyOnWriteArraySet<String> urlsAll4Page){
+    public static CopyOnWriteArraySet<String> getAllDetailUrl(CopyOnWriteArraySet<String> urlsAll4Page){
         String cityName = "www";
         if (urlsAll4Page == null){
-            log.info("方法：MogoBrandUtils.getAllDetailUrlList ==>> urlsAll4Page 为 null");
+            log.info("方法：MogoBrandUtils.getAllDetailUrl ==>> urlsAll4Page 为 null");
             return null;
         }
-        CopyOnWriteArraySet<String> urlsAll4Detail = new CopyOnWriteArraySet<>();
+        CopyOnWriteArraySet<String> allUrls4Detail = new CopyOnWriteArraySet<>();
 
         final String  url4CityName = (String) urlsAll4Page.toArray()[0];
         if (StringUtils.isNoneBlank(url4CityName)){
@@ -167,14 +167,14 @@ public class MogoBrandUtils {
                     String sourceType = roomInfo2JsonObj.getString("sourceType");
                     if ("2".equals(sourceType)){
                         String roomId = roomInfo2JsonObj.getString("roomId");
-                        // urlFinal >>>>  http://su.mgzf.com/room/6675684.shtml
-                        String urlFinal = "http://"+ finalCityName + ".mogoroom.com/room/" + roomId +  ".shtml";
-                        urlsAll4Detail.add(urlFinal);
+                        // singleUrl4Detail >>>>  http://su.mgzf.com/room/6675684.shtml
+                        String singleUrl4Detail = "http://"+ finalCityName + ".mogoroom.com/room/" + roomId +  ".shtml";
+                        allUrls4Detail.add(singleUrl4Detail);
                     }
                 });
             }
         });
-        return  urlsAll4Detail;
+        return  allUrls4Detail;
     }
 
 
