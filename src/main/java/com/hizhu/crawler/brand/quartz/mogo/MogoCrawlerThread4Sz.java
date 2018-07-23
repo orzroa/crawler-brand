@@ -45,13 +45,13 @@ public class MogoCrawlerThread4Sz implements Runnable,LogService {
 
         log.info("线程名称是：" + threadName + ">>>> 开始爬取 <<<<城市："+ cityShortName + "===== 起始URL为 >>>>" + startUrl);
 
-        CopyOnWriteArraySet<String> urlsAll4Area = MogoBrandUtils.getAllUrl4AreaList(startUrl);
+        CopyOnWriteArraySet<String> urlsAll4Area = MogoBrandUtils.getAllUrl4Area(startUrl);
         log.info("城市名称：" + cityShortName + ", 地区url数量：" +  urlsAll4Area.size());
 
-        CopyOnWriteArraySet<String> urlsAll4Page = MogoBrandUtils.getAllUrl4PageList(urlsAll4Area);
+        CopyOnWriteArraySet<String> urlsAll4Page = MogoBrandUtils.getAllUrl4Page(urlsAll4Area);
         log.info("城市名称：" + cityShortName + ", 分页url数量：" +  urlsAll4Page.size());
 
-        CopyOnWriteArraySet<String> urlsAll4Detail = MogoBrandUtils.getAllDetailUrlList(urlsAll4Page);
+        CopyOnWriteArraySet<String> urlsAll4Detail = MogoBrandUtils.getAllDetailUrl(urlsAll4Page);
         log.info("城市名称：" + cityShortName + ", 详情url数量：" +  urlsAll4Detail.size());
 
         /**

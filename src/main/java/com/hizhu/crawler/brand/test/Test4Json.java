@@ -17,7 +17,7 @@ public class Test4Json {
     public static void main(String[] args) {
         CopyOnWriteArraySet<String> list = new CopyOnWriteArraySet<>();
         list.add(startUrl);
-        final CopyOnWriteArraySet<String> allDetailUrlList = MogoBrandUtils.getAllDetailUrlList(list);
+        final CopyOnWriteArraySet<String> allDetailUrlList = MogoBrandUtils.getAllDetailUrl(list);
         allDetailUrlList.forEach(allDetailUrl->{
             System.out.println(allDetailUrl);
         });
