@@ -17,5 +17,4 @@ public class CrawlerBrandApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CrawlerBrandApplication.class, args);
 	}
-
 }
