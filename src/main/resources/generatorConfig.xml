@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     &lt;!&ndash; 引入配置文件 &ndash;&gt;
-    &lt;!&ndash;<properties resource="application.properties"/>&ndash;&gt;
+    &lt;!&ndash;<properties resource="application.yml"/>&ndash;&gt;
     &lt;!&ndash; Driver Class Path &ndash;&gt;
     <classPathEntry location="E:\Resource_cache\repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar"/>
     &lt;!&ndash; 一个数据库一个context &ndash;&gt;
