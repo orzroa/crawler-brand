@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" primary="true">
+        <!--<property name="username" value="root"/>
+        <property name="password" value="gdroot"/>-->
+        <property name="username" value="gaodupro"/>
+        <property name="password" value="YDZNTPYWiQ4gEftR"/>
+        <property name="url" value="jdbc:mysql://120.27.162.0:3306/gaodu_roball?useUnicode=true&amp;characterEncoding=utf-8"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath*:sqlmap/*.xml"/>
+    </bean>
+
+    <bean  id="scannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.hizhu.crawler.brand.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--Temp 数据源 -->
+
+    <bean id="dataSourceTemp" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="username" value="gdroot"/>
+        <property name="password" value="gdroot"/>
+        <property name="url" value="jdbc:mysql://rr-bp1refgx3467t7y54o.mysql.rds.aliyuncs.com:3306/gaodu?useUnicode=true&amp;characterEncoding=utf-8"/>
+    </bean>
+
+    <bean id="sqlSessionFactoryTemp" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceTemp"/>
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath*:sqlmap4temp/*.xml"/>
+    </bean>
+
+    <bean  id="scannerConfigurerTemp" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.hizhu.crawler.brand.mapper4temp"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryTemp"/>
+    </bean>
+
+    <bean id="transactionManagerTemp" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSourceTemp"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <tx:annotation-driven transaction-manager="transactionManagerTemp"/>
+
+</beans>

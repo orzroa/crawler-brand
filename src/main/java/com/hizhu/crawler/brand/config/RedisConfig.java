@@ -24,7 +24,7 @@ public class RedisConfig {
     @Autowired
     RedisClusterProperties redisClusterProperties;
 
-    @Value("${redis.password:}")
+    @Value(value = "${redis.password:}")
     private @Nullable String password;
 
     /**
