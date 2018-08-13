@@ -56,7 +56,7 @@ public class MogoBrandUtils {
         Elements districtElements = doc.select("div.region-list").select("span.item > a");
         Elements areaElements = doc.select("div.region-list").select("div.row-expand > a");
 
-        //拼装列表页 URLList  >>>====<<<  Begin
+        //拼装列表页 URLList  >>>====<<<  Begin  经过分析 area房源 = plate房源相加
         districtElements.forEach(districtElement ->{
             String listUrl4Area = startUrl + districtElement.attr("code");
             allUrls4Area.add(listUrl4Area);
