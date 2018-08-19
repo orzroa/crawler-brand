@@ -5,7 +5,7 @@ import com.hizhu.crawler.brand.utils.extract.MogoBrandUtils;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
- * Description ：
+ * Description ：测试json
  *
  * @author： manji
  * 2018/7/13 20:06
